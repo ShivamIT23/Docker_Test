@@ -2,11 +2,16 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-COPY . .
+COPY ./prisma ./prisma
+
+COPY package.json .
+COPY package-lock.json .
 
 RUN npm install
 
 RUN npx prisma generate
+
+COPY . .
 
 RUN npm run build
 
